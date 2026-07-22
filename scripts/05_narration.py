@@ -11,8 +11,9 @@ SAMPLE_TEXT = "깃허브 스타 7만 9천 개, 근데 아직도 모르는 사람
 
 
 async def generate_narration_with_captions(text: str, output_audio: Path, output_srt: Path, voice: str,
-                                            rate: str = "-8%") -> None:
-    communicate = edge_tts.Communicate(text=text, voice=voice, boundary="WordBoundary", rate=rate)
+                                            rate: str = "-8%", pitch: str = "+0Hz", volume: str = "+0%") -> None:
+    communicate = edge_tts.Communicate(text=text, voice=voice, boundary="WordBoundary",
+                                        rate=rate, pitch=pitch, volume=volume)
     submaker = edge_tts.SubMaker()
 
     with open(output_audio, "wb") as f:
@@ -50,7 +51,12 @@ def main():
     else:
         settings = json.loads((ROOT / "config" / "settings.json").read_text(encoding="utf-8"))
         voice = args.voice or settings["tts_voice"]
-        asyncio.run(generate_narration_with_captions(args.text, Path(args.out_audio), Path(args.out_srt), voice))
+        asyncio.run(generate_narration_with_captions(
+            args.text, Path(args.out_audio), Path(args.out_srt), voice,
+            rate=settings.get("tts_rate", "+0%"),
+            pitch=settings.get("tts_pitch", "+0Hz"),
+            volume=settings.get("tts_volume", "+0%"),
+        ))
 
 
 if __name__ == "__main__":
