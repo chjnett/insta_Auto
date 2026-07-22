@@ -1,0 +1,12 @@
+{
+  "base_prompt": "middle-aged Korean man, salt-and-pepper side-parted hair, glasses, mustache, wearing a navy quilted puffer vest over a brown cable-knit sweater with white collar shirt underneath, gray slacks, brown loafers, wristwatch, friendly warm smile, flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, full body, front-facing, standing pose",
+  "reference_image": "assets/character/base.png",
+  "poses": {
+    "base": "Natural friendly smile, standing pose, front-facing. This is the base reference image itself.",
+    "surprised": "Same character, same clothing and art style, exact same white background. Change only the facial expression to surprised — mouth open, eyebrows raised. Keep pose, body, and everything else identical.",
+    "nodding": "Same character, same clothing and art style, exact same white background. Change only the pose to nodding in agreement, head tilted slightly down, warm understanding expression. Keep clothing, face, and everything else identical.",
+    "pointing": "Same character, same clothing and art style, exact same white background. Change only the pose to pointing with one hand toward the viewer/upper area, confident expression. Keep clothing, face, and everything else identical.",
+    "questioning": "Same character, same clothing and art style, exact same white background. Change only the pose to head tilted to one side with a curious/questioning expression, one eyebrow raised. Keep clothing and everything else identical.",
+    "celebrating": "Same character, same clothing and art style, exact same white background. Change only the pose to both arms raised in celebration, big excited smile. Keep clothing and everything else identical."
+  }
+}
