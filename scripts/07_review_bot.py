@@ -61,15 +61,17 @@ async def run_bot_for(seconds: int) -> None:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--episode", required=True)
-    parser.add_argument("--caption", default="검토 요청")
+    parser.add_argument("--episode", required=True, nargs="+", help="one or more episode ids to send")
+    parser.add_argument("--caption", default="검토 요청",
+                         help="caption template; {episode} is substituted if present")
     parser.add_argument("--listen-seconds", type=int, default=300)
     args = parser.parse_args()
 
-    video_path = ROOT / "output" / "final" / f"{args.episode}_final.mp4"
-
     async def flow():
-        await send_for_review(args.episode, video_path, args.caption)
+        for episode_id in args.episode:
+            video_path = ROOT / "output" / "final" / f"{episode_id}_final.mp4"
+            caption = args.caption.format(episode=episode_id) if "{episode}" in args.caption else args.caption
+            await send_for_review(episode_id, video_path, caption)
         await run_bot_for(args.listen_seconds)
 
     asyncio.run(flow())
