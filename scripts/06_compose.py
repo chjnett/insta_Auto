@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def build_filter_complex(character_cues, props_cues, srt_path,
                           canvas_w=1080, canvas_h=1920,
-                          props_h=600, char_w=700, char_y=950):
+                          props_h=600, char_w=700, char_y=950, duration=15):
     props_w = canvas_w
-    filters = [f"color=white:s={canvas_w}x{canvas_h}:d=15[bg0]"]
+    filters = [f"color=white:s={canvas_w}x{canvas_h}:d={duration}[bg0]"]
     prev = "bg0"
     input_idx = 0
 
@@ -48,9 +48,18 @@ def build_filter_complex(character_cues, props_cues, srt_path,
     return ";".join(filters)
 
 
+def _get_audio_duration(path) -> float:
+    result = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+        capture_output=True, text=True, check=True,
+    )
+    return float(result.stdout.strip())
+
+
 def compose_episode(props_images, props_cues, character_images, character_cues,
                      narration_path, srt_path, bgm_path, output_path):
-    filter_complex = build_filter_complex(character_cues, props_cues, srt_path)
+    duration = _get_audio_duration(narration_path) + 0.5
+    filter_complex = build_filter_complex(character_cues, props_cues, srt_path, duration=duration)
 
     inputs = []
     for img in props_images:

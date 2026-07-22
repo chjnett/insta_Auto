@@ -10,8 +10,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_TEXT = "깃허브 스타 7만 9천 개, 근데 아직도 모르는 사람 많더라고요. 이거 모르고 Claude 쓰면 절반만 쓰는 거예요."
 
 
-async def generate_narration_with_captions(text: str, output_audio: Path, output_srt: Path, voice: str) -> None:
-    communicate = edge_tts.Communicate(text=text, voice=voice, boundary="WordBoundary")
+async def generate_narration_with_captions(text: str, output_audio: Path, output_srt: Path, voice: str,
+                                            rate: str = "-8%") -> None:
+    communicate = edge_tts.Communicate(text=text, voice=voice, boundary="WordBoundary", rate=rate)
     submaker = edge_tts.SubMaker()
 
     with open(output_audio, "wb") as f:

@@ -40,3 +40,11 @@ def test_build_filter_complex_empty_cues():
     result = compose.build_filter_complex([], [], "output/narration/ep01.srt")
     assert "subtitles=" in result
     assert "overlay=" not in result
+
+
+def test_build_filter_complex_duration_matches_narration_length():
+    # canvas duration must follow the actual narration length, not a fixed
+    # 15s — a longer script (e.g. 26s) would otherwise get its audio cut off
+    # by ffmpeg's -shortest once the 15s background stream ends
+    result = compose.build_filter_complex([], [], "output/narration/ep01.srt", duration=26.5)
+    assert "color=white:s=1080x1920:d=26.5[bg0]" in result

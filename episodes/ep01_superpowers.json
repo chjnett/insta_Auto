@@ -1,15 +1,54 @@
 {
-  "title": "Superpowers 플러그인",
+  "title": "Superpowers 플러그인 (Claude Code용 오픈소스 플러그인, 깃허브 스타 약 7만 9천 개)",
+  "narration_script": "깃허브 스타 7만 9천 개, 이거 모르고 Claude 쓰면 절반만 쓰는 거예요. 다짜고짜 코드부터 짜느라 오류 생겨서 답답하셨죠? Superpowers 플러그인이 정답입니다. 기능 기획부터 TDD 테스트 강제, 서브에이전트 코드 리뷰까지 스스로 처리하거든요. /plugin 명령어로 간단히 설치해보세요. 지금 바로 저장하고 써보세요!",
+  "captions": [
+    "깃허브 스타 7만 9천 개, 이거 모르고 Claude 쓰면 절반만 쓰는 거예요.",
+    "다짜고짜 코드부터 짜느라 오류 생겨서 답답하셨죠?",
+    "Superpowers 플러그인이 정답입니다.",
+    "기능 기획부터 TDD 테스트 강제, 서브에이전트 코드 리뷰까지 스스로 처리하거든요.",
+    "/plugin 명령어로 간단히 설치해보세요. 지금 바로 저장하고 써보세요!"
+  ],
   "props_prompts": [
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, magic wand with sparkles, glowing plugin puzzle piece, gear, lightning bolt, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: lightbulb with idea spark, chat bubble with checkmark, rocket launching, trophy with star, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, cracked gear, warning triangle, plugin puzzle piece, small bug icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: clipboard with checklist, shield with checkmark, robot arm, terminal window icon, bookmark ribbon, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
   ],
   "expression_cues": [
-    {"pose": "base", "start": 0, "duration": 5},
-    {"pose": "pointing", "start": 5, "duration": 5}
+    {
+      "pose": "surprised",
+      "start": 0.0,
+      "duration": 6.3
+    },
+    {
+      "pose": "questioning",
+      "start": 6.3,
+      "duration": 6.3
+    },
+    {
+      "pose": "pointing",
+      "start": 12.6,
+      "duration": 6.3
+    },
+    {
+      "pose": "nodding",
+      "start": 18.91,
+      "duration": 6.3
+    },
+    {
+      "pose": "celebrating",
+      "start": 25.21,
+      "duration": 6.3
+    }
   ],
   "props_cues": [
-    {"index": 0, "start": 0, "duration": 5},
-    {"index": 1, "start": 5, "duration": 5}
+    {
+      "index": 0,
+      "start": 0,
+      "duration": 15.76
+    },
+    {
+      "index": 1,
+      "start": 15.76,
+      "duration": 15.76
+    }
   ]
 }
