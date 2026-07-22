@@ -46,8 +46,8 @@ def get_client() -> genai.Client:
     return genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 
-def generate_pose(pose_key: str, client: genai.Client, cfg: dict, settings: dict) -> Path:
-    out_path = ROOT / "assets" / "character" / f"{pose_key}.png"
+def generate_pose(pose_key: str, client: genai.Client, cfg: dict, settings: dict, assets_dir: Path) -> Path:
+    out_path = assets_dir / f"{pose_key}.png"
     if out_path.exists():
         print(f"[skip] {out_path} already exists")
         return out_path
@@ -75,18 +75,22 @@ def generate_pose(pose_key: str, client: genai.Client, cfg: dict, settings: dict
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--pose", default="base", help="pose key from config/character.json, or 'all'")
+    parser.add_argument("--character", default="character",
+                         help="character id: matches config/{id}.json and assets/{id}/ (default: 'character')")
+    parser.add_argument("--pose", default="base", help="pose key from the character config, or 'all'")
     args = parser.parse_args()
 
-    cfg = load_json(ROOT / "config" / "character.json")
+    cfg = load_json(ROOT / "config" / f"{args.character}.json")
     settings = load_json(ROOT / "config" / "settings.json")
     client = get_client()
+    assets_dir = ROOT / "assets" / args.character
+    assets_dir.mkdir(parents=True, exist_ok=True)
 
     if args.pose == "all":
         for pose_key in cfg["poses"]:
-            generate_pose(pose_key, client, cfg, settings)
+            generate_pose(pose_key, client, cfg, settings, assets_dir)
     else:
-        generate_pose(args.pose, client, cfg, settings)
+        generate_pose(args.pose, client, cfg, settings, assets_dir)
 
 
 if __name__ == "__main__":

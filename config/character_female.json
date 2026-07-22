@@ -1,0 +1,12 @@
+{
+  "base_prompt": "high-quality webtoon-style anime illustration of a female programmer. Character design features wavy jet-black hair, expressive wide eyes, and a charming shocked facial expression. She wears a grey t-shirt printed with an intricate integrated circuit pattern and a prominent python programming language logo. She layers this with an open, fashionable black hoodie and slim-fit dark blue jeans. A black smartwatch and a simple bracelet are on her wrist. The background is a plain solid white background with absolutely no floor, ground line, shadow, or flooring texture of any kind — she appears to float on pure white, like a die-cut sticker. Character art is crisp, detailed, and vibrant. full body, front-facing, standing pose",
+  "reference_image": "assets/character_female/base.png",
+  "poses": {
+    "base": "Charming shocked facial expression, standing pose, front-facing. This is the base reference image itself.",
+    "surprised": "Same character, same clothing and art style, exact same white background. Change only the facial expression to even more surprised — mouth open, eyebrows raised high. Keep pose, body, and everything else identical.",
+    "nodding": "Same character, same clothing and art style, exact same white background. Change only the pose to nodding in agreement, head tilted slightly down, warm confident expression. Keep clothing, face, and everything else identical.",
+    "pointing": "Same character, same clothing and art style, exact same white background. Change only the pose to pointing with one hand toward the viewer/upper area, confident expression. Keep clothing, face, and everything else identical.",
+    "questioning": "Same character, same clothing and art style, exact same white background. Change only the pose to head tilted to one side with a curious/questioning expression, one eyebrow raised. Keep clothing and everything else identical.",
+    "celebrating": "Same character, same clothing and art style, exact same white background. Change only the pose to both arms raised in celebration, big excited smile. Keep clothing and everything else identical."
+  }
+}
