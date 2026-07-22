@@ -1,11 +1,13 @@
 import argparse
 import base64
+import io
 import json
 import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 from google import genai
+from PIL import Image, ImageChops
 
 import budget_guard
 
@@ -16,6 +18,22 @@ load_dotenv(ROOT / ".env")
 def load_json(path: Path) -> dict:
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def _trim_and_save_png(raw_bytes: bytes, out_path: Path, padding: int = 20) -> None:
+    """Decode whatever format Gemini returned, trim uniform white margins, save as real PNG."""
+    img = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
+    bg = Image.new("RGB", img.size, (255, 255, 255))
+    diff = ImageChops.difference(img, bg)
+    bbox = diff.getbbox()
+    if bbox:
+        left, top, right, bottom = bbox
+        left = max(0, left - padding)
+        top = max(0, top - padding)
+        right = min(img.width, right + padding)
+        bottom = min(img.height, bottom + padding)
+        img = img.crop((left, top, right, bottom))
+    img.save(out_path, "PNG")
 
 
 def get_client() -> genai.Client:
@@ -44,7 +62,7 @@ def generate_pose(pose_key: str, client: genai.Client, cfg: dict, settings: dict
     budget_guard.check_and_record("03_generate_character", "image", settings)
     interaction = client.interactions.create(model=model, input=input_parts)
     image_b64 = interaction.output_image.data
-    out_path.write_bytes(base64.b64decode(image_b64))
+    _trim_and_save_png(base64.b64decode(image_b64), out_path)
     print(f"[ok] wrote {out_path}")
     return out_path
 

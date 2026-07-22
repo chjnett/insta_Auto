@@ -3,3 +3,4 @@ google-genai
 edge-tts
 python-telegram-bot==22.*
 pytest
+Pillow
