@@ -9,8 +9,10 @@
     "/plugin 명령어로 간단히 설치해보세요. 지금 바로 저장하고 써보세요!"
   ],
   "props_prompts": [
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, cracked gear, warning triangle, plugin puzzle piece, small bug icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: clipboard with checklist, shield with checkmark, robot arm, terminal window icon, bookmark ribbon, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, cracked gear, warning triangle, plugin puzzle piece, small bug icon, magnifying glass, coffee cup, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: clipboard with checklist, shield with checkmark, robot arm, terminal window icon, bookmark ribbon, lightbulb, gear, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: rocket launching, star rating, computer monitor, chat bubble with code brackets, cloud upload icon, lock with checkmark, target with arrow, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: trophy, thumbs up, sparkles, plugin puzzle piece glowing, terminal command prompt, checklist, bell notification, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
   ],
   "expression_cues": [
     {

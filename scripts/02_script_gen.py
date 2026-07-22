@@ -44,10 +44,10 @@ props_prompts는 4개: 영상 흐름(후킹/문제 - 소개 - 포인트 - CTA)�
   "narration_script": "전체 나레이션 텍스트 ({target_chars}자 내외)",
   "captions": ["자막 구간1", "자막 구간2"],
   "props_prompts": [
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_1}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_2}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_3}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_4}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_1}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_2}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_3}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_4}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only"
   ]
 }}"""
 

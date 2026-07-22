@@ -9,8 +9,10 @@
     "지금 저장하고 무료로 시작해보세요!"
   ],
   "props_prompts": [
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, gear, star, robot arm, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: checkmark, magic wand, sparkling sparkles, shield, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, gear, star, robot arm, magnifying glass over code, warning triangle, bug icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: checkmark, magic wand, sparkling sparkles, shield, lightbulb, gear, coffee cup, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: docker whale icon, terminal window, lightning bolt, code brackets, cloud icon, computer monitor, arrow cycle icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: robot head, checklist clipboard, rocket, trophy, star burst, thumbs up, bell notification, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
   ],
   "expression_cues": [
     {

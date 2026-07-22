@@ -62,20 +62,24 @@ def build_srt_from_captions(captions: list[str], duration: float) -> str:
     return "\n".join(lines)
 
 
-def generate_narration_gemini(text: str, captions: list[str], output_audio: Path, output_srt: Path,
-                               voice: str, model: str, settings: dict) -> float:
-    """Higher-quality narration via Gemini's native TTS model, in place of
-    edge-tts, per user feedback that edge-tts voice quality was too low.
-    Returns the resulting audio duration in seconds."""
+def _gemini_tts_pcm(client: genai.Client, text: str, voice: str, model: str, settings: dict) -> bytes:
     budget_guard.check_and_record("05_narration", "tts", settings)
-    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     interaction = client.interactions.create(
         model=model,
         input=text,
         response_format={"type": "audio"},
         generation_config={"speech_config": [{"voice": voice}]},
     )
-    pcm = base64.b64decode(interaction.output_audio.data)
+    return base64.b64decode(interaction.output_audio.data)
+
+
+def generate_narration_gemini(text: str, captions: list[str], output_audio: Path, output_srt: Path,
+                               voice: str, model: str, settings: dict) -> float:
+    """Higher-quality narration via Gemini's native TTS model, in place of
+    edge-tts, per user feedback that edge-tts voice quality was too low.
+    Returns the resulting audio duration in seconds."""
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    pcm = _gemini_tts_pcm(client, text, voice, model, settings)
     with wave.open(str(output_audio), "wb") as wf:
         wf.setnchannels(1)
         wf.setsampwidth(2)
@@ -85,6 +89,38 @@ def generate_narration_gemini(text: str, captions: list[str], output_audio: Path
     duration = len(pcm) / (24000 * 2)
     output_srt.write_text(build_srt_from_captions(captions, duration), encoding="utf-8")
     return duration
+
+
+def generate_narration_gemini_per_sentence(captions: list[str], output_audio: Path, output_srt: Path,
+                                            voice: str, model: str, settings: dict) -> float:
+    """Same Gemini TTS voice, but synthesized one API call per caption/sentence
+    instead of one call for the whole script. This trades a few extra cheap
+    TTS calls for *exact* text-audio sync: each caption's SRT timing is the
+    real measured duration of the clip that speaks it, not a guess (the
+    single-call + even-split approach in generate_narration_gemini() drifts
+    out of sync because sentences don't take equal time to speak)."""
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    srt_lines = []
+    all_pcm = bytearray()
+    cursor = 0.0
+
+    for i, caption in enumerate(captions):
+        pcm = _gemini_tts_pcm(client, caption, voice, model, settings)
+        seg_duration = len(pcm) / (24000 * 2)
+        srt_lines.append(
+            f"{i + 1}\n{_srt_timestamp(cursor)} --> {_srt_timestamp(cursor + seg_duration)}\n{caption}\n"
+        )
+        all_pcm += pcm
+        cursor += seg_duration
+
+    with wave.open(str(output_audio), "wb") as wf:
+        wf.setnchannels(1)
+        wf.setsampwidth(2)
+        wf.setframerate(24000)
+        wf.writeframes(bytes(all_pcm))
+
+    output_srt.write_text("\n".join(srt_lines), encoding="utf-8")
+    return cursor
 
 
 async def compare_voices(voices: list[str]) -> None:
