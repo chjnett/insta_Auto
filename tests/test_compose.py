@@ -30,10 +30,11 @@ def test_build_filter_complex_basic_structure():
     # character images occupy input indices 2..3, right after props
     assert "[2:v]scale=700:-1[char0]" in result
     assert "[3:v]scale=700:-1[char1]" in result
-    # smaller subtitle font per user request, and readable-on-white styling
-    assert "FontSize=32" in result
+    # smaller subtitle font per user request (more whitespace around it),
+    # and readable-on-white styling
+    assert "FontSize=24" in result
     assert "PrimaryColour=&H00000000" in result
-    assert "MarginV=145" in result
+    assert "MarginV=155" in result
     # bundled Black Han Sans (SIL OFL) via fontsdir, not relying on whatever
     # fallback font happens to be installed on the machine
     assert "fontsdir=assets/fonts" in result
