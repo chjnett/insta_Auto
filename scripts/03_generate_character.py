@@ -20,12 +20,18 @@ def load_json(path: Path) -> dict:
         return json.load(f)
 
 
-def _trim_and_save_png(raw_bytes: bytes, out_path: Path, padding: int = 20) -> None:
-    """Decode whatever format Gemini returned, trim uniform white margins, save as real PNG."""
+def _trim_and_save_png(raw_bytes: bytes, out_path: Path, padding: int = 20, threshold: int = 20) -> None:
+    """Decode whatever format Gemini returned, trim uniform white margins, save as real PNG.
+
+    Uses a difference threshold rather than a raw getbbox() because JPEG-encoded
+    output introduces compression noise into nominally-white background pixels,
+    which makes an exact-white diff bbox span the entire image.
+    """
     img = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
     bg = Image.new("RGB", img.size, (255, 255, 255))
-    diff = ImageChops.difference(img, bg)
-    bbox = diff.getbbox()
+    diff = ImageChops.difference(img, bg).convert("L")
+    mask = diff.point(lambda p: 255 if p > threshold else 0)
+    bbox = mask.getbbox()
     if bbox:
         left, top, right, bottom = bbox
         left = max(0, left - padding)
