@@ -1,2 +1,7 @@
 timestamp,script,call_type,estimated_cost_usd,cumulative_cost_usd
 2026-07-22T18:29:39,03_generate_character,image,0.0390,0.0390
+2026-07-22T18:34:28,03_generate_character,image,0.0390,0.0780
+2026-07-22T18:34:44,03_generate_character,image,0.0390,0.1170
+2026-07-22T18:35:00,03_generate_character,image,0.0390,0.1560
+2026-07-22T18:35:14,03_generate_character,image,0.0390,0.1950
+2026-07-22T18:35:29,03_generate_character,image,0.0390,0.2340
