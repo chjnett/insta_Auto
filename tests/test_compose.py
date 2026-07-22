@@ -34,6 +34,10 @@ def test_build_filter_complex_basic_structure():
     assert "FontSize=32" in result
     assert "PrimaryColour=&H00000000" in result
     assert "MarginV=145" in result
+    # bundled Black Han Sans (SIL OFL) via fontsdir, not relying on whatever
+    # fallback font happens to be installed on the machine
+    assert "fontsdir=assets/fonts" in result
+    assert "FontName=Black Han Sans" in result
 
 
 def test_build_filter_complex_empty_cues():

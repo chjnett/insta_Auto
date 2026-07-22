@@ -16,39 +16,39 @@
     {
       "pose": "surprised",
       "start": 0.0,
-      "duration": 6.3
+      "duration": 5.8
     },
     {
       "pose": "questioning",
-      "start": 6.3,
-      "duration": 6.3
+      "start": 5.8,
+      "duration": 5.8
     },
     {
       "pose": "pointing",
-      "start": 12.6,
-      "duration": 6.3
+      "start": 11.6,
+      "duration": 5.8
     },
     {
       "pose": "nodding",
-      "start": 18.91,
-      "duration": 6.3
+      "start": 17.4,
+      "duration": 5.8
     },
     {
       "pose": "celebrating",
-      "start": 25.21,
-      "duration": 6.3
+      "start": 23.19,
+      "duration": 5.8
     }
   ],
   "props_cues": [
     {
       "index": 0,
       "start": 0,
-      "duration": 15.76
+      "duration": 14.5
     },
     {
       "index": 1,
-      "start": 15.76,
-      "duration": 15.76
+      "start": 14.5,
+      "duration": 14.5
     }
   ]
 }

@@ -41,9 +41,12 @@ def build_filter_complex(character_cues, props_cues, srt_path,
     # calibrated empirically to land text inside the 640-900px caption band.
     # PrimaryColour=black because on this white canvas the ASS default
     # (white fill / black outline) renders as near-invisible outlined text.
+    # fontsdir points at our bundled Black Han Sans (SIL OFL, bold/rounded
+    # Korean display font) so rendering doesn't depend on whatever fallback
+    # happens to be installed on the machine running this.
     filters.append(
-        f"[{prev}]subtitles={srt_path}:force_style="
-        f"'FontName=NanumSquareRound,FontSize=32,PrimaryColour=&H00000000,Alignment=2,MarginV=145'[v]"
+        f"[{prev}]subtitles={srt_path}:fontsdir=assets/fonts:force_style="
+        f"'FontName=Black Han Sans,FontSize=32,PrimaryColour=&H00000000,Alignment=2,MarginV=145'[v]"
     )
     return ";".join(filters)
 
