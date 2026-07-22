@@ -38,17 +38,18 @@ def build_filter_complex(character_cues, props_cues, srt_path,
     # MarginV=155 (not a naive pixel value) is intentional: ffmpeg's subtitles
     # filter scales MarginV by ~6.7x relative to canvas height when the
     # source is a plain .srt with no embedded PlayRes, so it was calibrated
-    # empirically. FontSize=24 (smaller, per user request) + char_y pushed
-    # down to 1020 (from 950) together open up visible whitespace between
-    # the props icons, the caption text, and the character.
+    # empirically. char_y pushed down to 1020 (from 950) opens up visible
+    # whitespace between the props icons, the caption text, and the character.
     # PrimaryColour=black because on this white canvas the ASS default
     # (white fill / black outline) renders as near-invisible outlined text.
-    # fontsdir points at our bundled Black Han Sans (SIL OFL, bold/rounded
-    # Korean display font) so rendering doesn't depend on whatever fallback
-    # happens to be installed on the machine running this.
+    # fontsdir points at our bundled Noto Sans KR Regular (SIL OFL) — a static
+    # 400-weight instance extracted from Google's variable font via
+    # `fonttools varLib.instancer` (Google Fonts ships no static KR weights).
+    # Regular weight replaced Black Han Sans per user request for a
+    # thinner/sharper look at small caption sizes.
     filters.append(
         f"[{prev}]subtitles={srt_path}:fontsdir=assets/fonts:force_style="
-        f"'FontName=Black Han Sans,FontSize=18,PrimaryColour=&H00000000,Alignment=2,MarginV=155'[v]"
+        f"'FontName=Noto Sans KR,FontSize=16,PrimaryColour=&H00000000,Alignment=2,MarginV=155'[v]"
     )
     return ";".join(filters)
 

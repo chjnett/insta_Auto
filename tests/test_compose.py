@@ -32,13 +32,14 @@ def test_build_filter_complex_basic_structure():
     assert "[3:v]scale=700:-1[char1]" in result
     # smaller subtitle font per user request (more whitespace around it),
     # and readable-on-white styling
-    assert "FontSize=18" in result
+    assert "FontSize=16" in result
     assert "PrimaryColour=&H00000000" in result
     assert "MarginV=155" in result
-    # bundled Black Han Sans (SIL OFL) via fontsdir, not relying on whatever
-    # fallback font happens to be installed on the machine
+    # bundled Noto Sans KR Regular (SIL OFL, thinner weight per user request)
+    # via fontsdir, not relying on whatever fallback font happens to be
+    # installed on the machine
     assert "fontsdir=assets/fonts" in result
-    assert "FontName=Black Han Sans" in result
+    assert "FontName=Noto Sans KR" in result
 
 
 def test_build_filter_complex_empty_cues():
