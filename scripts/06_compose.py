@@ -96,12 +96,14 @@ def compose_episode(props_images, props_cues, character_images, character_cues,
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--episode", required=True)
+    parser.add_argument("--character", default="character",
+                         help="character id: matches assets/{id}/ pose images (default: 'character')")
     args = parser.parse_args()
 
     episode = json.loads((ROOT / "episodes" / f"{args.episode}.json").read_text(encoding="utf-8"))
     props_dir = ROOT / "assets" / "props" / args.episode
     props_images = [props_dir / f"props_{c['index']}.png" for c in episode["props_cues"]]
-    character_images = [ROOT / "assets" / "character" / f"{c['pose']}.png" for c in episode["expression_cues"]]
+    character_images = [ROOT / "assets" / args.character / f"{c['pose']}.png" for c in episode["expression_cues"]]
     narration_path = ROOT / "output" / "narration" / f"{args.episode}.mp3"
     srt_path = ROOT / "output" / "narration" / f"{args.episode}.srt"
     bgm_path = ROOT / "assets" / "bgm" / "default.mp3"
