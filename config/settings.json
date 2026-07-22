@@ -1,6 +1,11 @@
 {
   "gemini_model_text": "gemini-3.6-flash",
   "gemini_model_image": "gemini-3.1-flash-image",
+  "narration_engine": "gemini",
+  "gemini_model_tts": "gemini-3.1-flash-tts-preview",
+  "gemini_tts_voice_male": "Orus",
+  "gemini_tts_voice_female": "Aoede",
+  "gemini_tts_voice_note": "'Firm/Informative' 계열 voice를 남성, 'Breezy/Bright' 계열을 여성으로 임의 선택함 — Gemini 공식 문서에 성별 라벨이 명시되어 있지 않아 실제로 들어보고 확인 필요",
   "tts_voice": "ko-KR-HyunsuMultilingualNeural",
   "tts_rate": "-4%",
   "tts_pitch": "-8Hz",

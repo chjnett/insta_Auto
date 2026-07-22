@@ -104,7 +104,7 @@ def main():
     props_dir = ROOT / "assets" / "props" / args.episode
     props_images = [props_dir / f"props_{c['index']}.png" for c in episode["props_cues"]]
     character_images = [ROOT / "assets" / args.character / f"{c['pose']}.png" for c in episode["expression_cues"]]
-    narration_path = ROOT / "output" / "narration" / f"{args.episode}.mp3"
+    narration_path = ROOT / "output" / "narration" / f"{args.episode}.wav"
     srt_path = ROOT / "output" / "narration" / f"{args.episode}.srt"
     bgm_path = ROOT / "assets" / "bgm" / "default.mp3"
     output_path = ROOT / "output" / "final" / f"{args.episode}_final.mp4"

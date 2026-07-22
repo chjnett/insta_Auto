@@ -8,6 +8,9 @@ LOG_PATH = ROOT / "logs" / "run_log.csv"
 COST_ESTIMATES_USD = {
     "image": 0.039,
     "text": 0.01,
+    # gemini-3.1-flash-tts-preview: $20/1M output audio tokens, 25 tokens/sec
+    # of audio -> ~$0.0005/sec. Rounded up generously for a ~30s clip.
+    "tts": 0.03,
 }
 
 

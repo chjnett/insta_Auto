@@ -1,11 +1,20 @@
 import argparse
 import asyncio
+import base64
+import datetime
 import json
+import os
+import wave
 from pathlib import Path
 
 import edge_tts
+from dotenv import load_dotenv
+from google import genai
+
+import budget_guard
 
 ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env")
 
 SAMPLE_TEXT = "깃허브 스타 7만 9천 개, 근데 아직도 모르는 사람 많더라고요. 이거 모르고 Claude 쓰면 절반만 쓰는 거예요."
 
@@ -25,6 +34,57 @@ async def generate_narration_with_captions(text: str, output_audio: Path, output
 
     with open(output_srt, "w", encoding="utf-8") as f:
         f.write(submaker.get_srt())
+
+
+def _srt_timestamp(seconds: float) -> str:
+    td = datetime.timedelta(seconds=max(0.0, seconds))
+    total_ms = round(td.total_seconds() * 1000)
+    hours, rem = divmod(total_ms, 3_600_000)
+    minutes, rem = divmod(rem, 60_000)
+    secs, ms = divmod(rem, 1000)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d},{ms:03d}"
+
+
+def build_srt_from_captions(captions: list[str], duration: float) -> str:
+    """Gemini TTS returns no word/sentence timestamps (unlike edge-tts's
+    SubMaker), so caption timing is approximated by splitting the real
+    audio duration evenly across the sentence-level `captions` list — the
+    same even-distribution approach already used for expression/props cues."""
+    n = len(captions)
+    step = duration / n
+    lines = []
+    for i, caption in enumerate(captions):
+        start = i * step
+        end = (i + 1) * step
+        lines.append(
+            f"{i + 1}\n{_srt_timestamp(start)} --> {_srt_timestamp(end)}\n{caption}\n"
+        )
+    return "\n".join(lines)
+
+
+def generate_narration_gemini(text: str, captions: list[str], output_audio: Path, output_srt: Path,
+                               voice: str, model: str, settings: dict) -> float:
+    """Higher-quality narration via Gemini's native TTS model, in place of
+    edge-tts, per user feedback that edge-tts voice quality was too low.
+    Returns the resulting audio duration in seconds."""
+    budget_guard.check_and_record("05_narration", "tts", settings)
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    interaction = client.interactions.create(
+        model=model,
+        input=text,
+        response_format={"type": "audio"},
+        generation_config={"speech_config": [{"voice": voice}]},
+    )
+    pcm = base64.b64decode(interaction.output_audio.data)
+    with wave.open(str(output_audio), "wb") as wf:
+        wf.setnchannels(1)
+        wf.setsampwidth(2)
+        wf.setframerate(24000)
+        wf.writeframes(pcm)
+
+    duration = len(pcm) / (24000 * 2)
+    output_srt.write_text(build_srt_from_captions(captions, duration), encoding="utf-8")
+    return duration
 
 
 async def compare_voices(voices: list[str]) -> None:

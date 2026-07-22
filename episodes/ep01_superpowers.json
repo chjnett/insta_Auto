@@ -16,59 +16,54 @@
     {
       "pose": "surprised",
       "start": 0.0,
-      "duration": 5.67
+      "duration": 4.92
     },
     {
       "pose": "questioning",
-      "start": 5.67,
-      "duration": 5.67
+      "start": 4.92,
+      "duration": 4.92
     },
     {
       "pose": "pointing",
-      "start": 11.34,
-      "duration": 5.67
+      "start": 9.84,
+      "duration": 4.92
     },
     {
       "pose": "nodding",
-      "start": 17.01,
-      "duration": 5.67
+      "start": 14.76,
+      "duration": 4.92
     },
     {
       "pose": "celebrating",
-      "start": 22.68,
-      "duration": 5.67
+      "start": 19.68,
+      "duration": 4.92
     }
   ],
   "props_cues": [
     {
       "index": 0,
       "start": 0.0,
-      "duration": 4.72
+      "duration": 4.92
     },
     {
       "index": 1,
-      "start": 4.72,
-      "duration": 4.72
+      "start": 4.92,
+      "duration": 4.92
     },
     {
       "index": 0,
-      "start": 9.45,
-      "duration": 4.72
+      "start": 9.84,
+      "duration": 4.92
     },
     {
       "index": 1,
-      "start": 14.17,
-      "duration": 4.72
+      "start": 14.76,
+      "duration": 4.92
     },
     {
       "index": 0,
-      "start": 18.9,
-      "duration": 4.72
-    },
-    {
-      "index": 1,
-      "start": 23.62,
-      "duration": 4.72
+      "start": 19.68,
+      "duration": 4.92
     }
   ]
 }
