@@ -48,7 +48,7 @@ def build_filter_complex(character_cues, props_cues, srt_path,
     # happens to be installed on the machine running this.
     filters.append(
         f"[{prev}]subtitles={srt_path}:fontsdir=assets/fonts:force_style="
-        f"'FontName=Black Han Sans,FontSize=24,PrimaryColour=&H00000000,Alignment=2,MarginV=155'[v]"
+        f"'FontName=Black Han Sans,FontSize=18,PrimaryColour=&H00000000,Alignment=2,MarginV=155'[v]"
     )
     return ";".join(filters)
 
@@ -84,6 +84,9 @@ def compose_episode(props_images, props_cues, character_images, character_cues,
         "ffmpeg", "-y", *inputs,
         "-filter_complex", f"{filter_complex};{audio_filter}",
         "-map", "[v]", "-map", "[a]",
+        # explicit high-quality encode: without this, ffmpeg's default CRF
+        # softens the fine strokes of small subtitle text under compression
+        "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p",
         "-shortest", str(output_path),
     ]
     subprocess.run(cmd, check=True)
