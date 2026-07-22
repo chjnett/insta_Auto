@@ -13,3 +13,4 @@ timestamp,script,call_type,estimated_cost_usd,cumulative_cost_usd
 2026-07-22T21:22:51,04_generate_props,image,0.0390,0.4100
 2026-07-22T21:24:22,04_generate_props,image,0.0390,0.4490
 2026-07-22T21:24:36,04_generate_props,image,0.0390,0.4880
+2026-07-22T21:52:37,01_research,text,0.0100,0.4980

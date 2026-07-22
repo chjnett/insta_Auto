@@ -19,6 +19,7 @@ CHARS_PER_SECOND = 6.7
 TARGET_SECONDS = 28
 
 EXPRESSION_CYCLE = ["surprised", "questioning", "pointing", "nodding", "celebrating"]
+PROPS_SEGMENT_SECONDS = 5
 
 SCRIPT_PROMPT_TEMPLATE = """다음 주제로 인스타 릴스 나레이션 대본을 작성해줘: {title}
 
@@ -76,10 +77,14 @@ def build_cues(duration: float) -> tuple[list[dict], list[dict]]:
         for i in range(n_expr)
     ]
 
-    half = duration / 2
+    # Cycle between the 2 generated props sets in short segments (rather than
+    # one static half each) so the top icons visibly change more often —
+    # reuses the same 2 images, no extra Gemini image-generation cost.
+    n_props = max(2, round(duration / PROPS_SEGMENT_SECONDS))
+    props_step = duration / n_props
     props_cues = [
-        {"index": 0, "start": 0, "duration": round(half, 2)},
-        {"index": 1, "start": round(half, 2), "duration": round(duration - half, 2)},
+        {"index": i % 2, "start": round(i * props_step, 2), "duration": round(props_step, 2)}
+        for i in range(n_props)
     ]
     return expression_cues, props_cues
 
