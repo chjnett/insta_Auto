@@ -11,61 +11,61 @@
   "props_prompts": [
     "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, cracked gear, warning triangle, plugin puzzle piece, small bug icon, magnifying glass, coffee cup, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
     "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: clipboard with checklist, shield with checkmark, robot arm, terminal window icon, bookmark ribbon, lightbulb, gear, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: rocket launching, star rating, computer monitor, chat bubble with code brackets, cloud upload icon, lock with checkmark, target with arrow, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: trophy, thumbs up, sparkles, plugin puzzle piece glowing, terminal command prompt, checklist, bell notification, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: rocket launching, star, computer chip icon, speech bubble icon, cloud upload icon, padlock with checkmark, target with arrow, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: trophy, thumbs up icon, sparkles, glowing plugin puzzle piece, terminal window icon, checklist icon, bell icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only"
   ],
   "expression_cues": [
     {
       "pose": "surprised",
       "start": 0.0,
-      "duration": 5.06
+      "duration": 5.27
     },
     {
       "pose": "questioning",
-      "start": 5.06,
-      "duration": 5.06
+      "start": 5.27,
+      "duration": 5.27
     },
     {
       "pose": "pointing",
-      "start": 10.11,
-      "duration": 5.06
+      "start": 10.54,
+      "duration": 5.27
     },
     {
       "pose": "nodding",
-      "start": 15.17,
-      "duration": 5.06
+      "start": 15.82,
+      "duration": 5.27
     },
     {
       "pose": "celebrating",
-      "start": 20.22,
-      "duration": 5.06
+      "start": 21.09,
+      "duration": 5.27
     }
   ],
   "props_cues": [
     {
       "index": 0,
       "start": 0.0,
-      "duration": 5.06
+      "duration": 5.27
     },
     {
       "index": 1,
-      "start": 5.06,
-      "duration": 5.06
+      "start": 5.27,
+      "duration": 5.27
+    },
+    {
+      "index": 2,
+      "start": 10.54,
+      "duration": 5.27
+    },
+    {
+      "index": 3,
+      "start": 15.82,
+      "duration": 5.27
     },
     {
       "index": 0,
-      "start": 10.11,
-      "duration": 5.06
-    },
-    {
-      "index": 1,
-      "start": 15.17,
-      "duration": 5.06
-    },
-    {
-      "index": 0,
-      "start": 20.22,
-      "duration": 5.06
+      "start": 21.09,
+      "duration": 5.27
     }
   ]
 }

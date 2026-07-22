@@ -108,13 +108,50 @@ Content Publishing은 **2단계 Graph API 호출**로 이루어진다:
 
 ---
 
-## 8. 최적화 팁 (서드파티 가이드 종합)
+## 8. API 호출 최적화 팁 (기술적 최적화 — 서드파티 가이드 종합)
+
+이 섹션은 **API 호출 자체를 효율적으로 쓰는 법**이다 (아래 8.5절의 "릴스 노출수를 늘리는 법"과는 다른 주제).
 
 - **Field selection**: 필요한 필드만 명시적으로 요청해서 응답 크기/처리 비용 절감
 - **캐싱**: 적절한 TTL로 응답 캐싱
 - **배치 요청(batch requests)**: 여러 호출을 묶어서 처리
 - **커서 기반 페이지네이션**: 목록 조회 시 offset 대신 cursor 사용
 - **웹훅(webhooks)**: 실시간 갱신이 필요한 경우 폴링 대신 웹훅 사용
+
+---
+
+## 8.5. 릴스 노출수(도달) 최적화 — 계정/콘텐츠 전략
+
+API 설정과는 별개로, **실제로 릴스가 더 많은 사람에게 노출되도록 하는 전략**. 2026년 기준 인스타그램 알고리즘 관련 서드파티 가이드 종합.
+
+### 핵심 지표
+- 알고리즘은 이제 팔로워 수가 아니라 **완주율(completion rate), 시청 시간, 공유/저장**을 핵심 신호로 본다.
+- **DM 공유(shares)는 좋아요보다 3~5배 더 높은 가중치**를 받는 것으로 알려짐 — "이거 봐" 하고 친구에게 보내고 싶게 만드는 콘텐츠가 유리.
+- 저장(saves)도 "낯선 사람에게도 유용한 콘텐츠인가"를 판단하는 신호로 쓰임.
+
+### 초반 3초(후킹)가 결정적
+- 광고 기준으로는 **0.5초 안에 후킹**을 권장할 정도로 초반이 중요하고, 일반 콘텐츠도 **첫 3초**가 핵심 주목 구간.
+- 로고나 느린 인트로로 시작하지 말고 **바로 본론(후킹 문장)으로 시작** — 우리 파이프라인의 "후킹 강화 기법표"(DESIGN.md 9.1)가 이 원칙과 정확히 일치함.
+- 릴스는 **짧을수록, 완주율이 높을수록** 유리한 경향.
+
+### 게시 직후 1시간이 승부처
+- **게시 후 첫 1시간**의 시청 지속률/초반 반응이 약하면 알고리즘이 거의 즉시 노출을 줄인다.
+- 즉, 게시 타이밍(타겟 시청자가 활발한 시간대)이 중요 — 계정의 팔로워 활동 시간대를 인사이트에서 확인해서 그 시간대에 맞춰 `output/ready_to_publish/`에서 실제 업로드하는 것이 좋음.
+
+### 릴스 vs 다른 포맷
+- 릴스는 피드 게시물보다 평균 **6.1배 더 많은 계정에 도달**.
+- 권장 콘텐츠 믹스(일반적 기준): 주 3~4개 릴스 + 2~3개 캐러셀 + 1~2개 정적 게시물 — 성장과 커뮤니티 유지의 균형.
+
+### 해시태그/키워드
+- 릴스는 포맷 자체가 도달이 넓어서 해시태그 개수는 예전만큼 중요하지 않지만, **쓰는 해시태그는 콘텐츠와 정확히 일치**해야 함.
+- 캡션과 프로필 소개(bio)에 키워드를 넣으면 플랫폼이 콘텐츠 주제/타겟 시청자를 파악하는 데 도움됨 — "Claude Code", "AI 코딩", "개발자 팁" 같은 키워드를 캡션에 자연스럽게 포함시키는 것을 고려.
+
+### 우리 파이프라인에 적용할 점
+| 이미 하고 있는 것 | 아직 안 하는 것 (고려 필요) |
+|---|---|
+| 후킹 강화 기법표 적용 (0~3초 후킹) | 게시 시간대 최적화 (팔로워 활동 시간대 확인) |
+| 짧은 릴스 분량 (~20~30초) | 캡션에 키워드/해시태그 전략 부재 |
+| — | 저장/공유를 유도하는 CTA 문구 강화 ("저장하세요"는 이미 CTA 기법에 있음, 공유 유도 문구 추가 고려) |
 
 ---
 
@@ -136,3 +173,8 @@ Content Publishing은 **2단계 Graph API 호출**로 이루어진다:
 - [Instagram API Integration Guide 2026: Setup, OAuth, Rate Limits & Key Challenges | Phyllo](https://www.getphyllo.com/post/instagram-api-integration-101-for-developers-of-the-creator-economy)
 - [Instagram Graph API 2026: Dev Questions Meta's Docs Leave Open](https://zernio.com/blog/instagram-graph-api)
 - [Instagram API in 2026: every option, free or paid, explained](https://zernio.com/blog/instagram-api)
+- [Instagram Reels Best Practices: Master the Algorithm in 2026](https://quso.ai/blog/instagram-reels-best-practices)
+- [How the Instagram Algorithm Works: Your 2026 Guide (Buffer)](https://buffer.com/resources/instagram-algorithms/)
+- [Instagram Algorithm Tips 2026: Boost Reach & Engagement Guide](https://www.clixie.ai/blog/instagram-algorithm-tips-for-2026-everything-you-need-to-know)
+- [Instagram algorithm tips for 2026 (Hootsuite)](https://blog.hootsuite.com/instagram-algorithm/)
+- [Instagram Reels Reach 2026: Complete Algorithm & Growth Strategy Guide](https://www.truefuturemedia.com/articles/instagram-reels-reach-2026-business-growth-guide)

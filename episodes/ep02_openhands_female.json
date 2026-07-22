@@ -11,61 +11,51 @@
   "props_prompts": [
     "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, gear, star, robot arm, magnifying glass over code, warning triangle, bug icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
     "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: checkmark, magic wand, sparkling sparkles, shield, lightbulb, gear, coffee cup, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: docker whale icon, terminal window, lightning bolt, code brackets, cloud icon, computer monitor, arrow cycle icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: robot head, checklist clipboard, rocket, trophy, star burst, thumbs up, bell notification, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: docker whale icon, terminal window icon, lightning bolt, gear, cloud icon, arrow cycle icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: robot head, checklist clipboard, rocket, trophy, star burst, thumbs up icon, bell icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only"
   ],
   "expression_cues": [
     {
       "pose": "surprised",
       "start": 0.0,
-      "duration": 5.33
+      "duration": 5.28
     },
     {
       "pose": "questioning",
-      "start": 5.33,
-      "duration": 5.33
+      "start": 5.28,
+      "duration": 5.28
     },
     {
       "pose": "pointing",
-      "start": 10.66,
-      "duration": 5.33
+      "start": 10.56,
+      "duration": 5.28
     },
     {
       "pose": "nodding",
-      "start": 15.98,
-      "duration": 5.33
-    },
-    {
-      "pose": "celebrating",
-      "start": 21.31,
-      "duration": 5.33
+      "start": 15.84,
+      "duration": 5.28
     }
   ],
   "props_cues": [
     {
       "index": 0,
       "start": 0.0,
-      "duration": 5.33
+      "duration": 5.28
     },
     {
       "index": 1,
-      "start": 5.33,
-      "duration": 5.33
+      "start": 5.28,
+      "duration": 5.28
     },
     {
-      "index": 0,
-      "start": 10.66,
-      "duration": 5.33
+      "index": 2,
+      "start": 10.56,
+      "duration": 5.28
     },
     {
-      "index": 1,
-      "start": 15.98,
-      "duration": 5.33
-    },
-    {
-      "index": 0,
-      "start": 21.31,
-      "duration": 5.33
+      "index": 3,
+      "start": 15.84,
+      "duration": 5.28
     }
   ]
 }
