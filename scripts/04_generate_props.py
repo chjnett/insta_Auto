@@ -20,10 +20,13 @@ def load_json(path: Path) -> dict:
         return json.load(f)
 
 
-def generate_props(episode_id: str, props_prompt: str, client: genai.Client, settings: dict) -> Path:
+def generate_props(episode_id: str, index: int, props_prompt: str, client: genai.Client, settings: dict) -> Path:
     out_dir = ROOT / "assets" / "props" / episode_id
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / "props.png"
+    out_path = out_dir / f"props_{index}.png"
+    if out_path.exists():
+        print(f"[skip] {out_path} already exists")
+        return out_path
 
     budget_guard.check_and_record("04_generate_props", "image", settings)
     interaction = client.interactions.create(
@@ -46,7 +49,9 @@ def main():
     settings = load_json(ROOT / "config" / "settings.json")
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-    generate_props(args.episode, episode["props_prompt"], client, settings)
+    props_prompts = episode.get("props_prompts") or [episode["props_prompt"]]
+    for i, prompt in enumerate(props_prompts):
+        generate_props(args.episode, i, prompt, client, settings)
 
 
 if __name__ == "__main__":
