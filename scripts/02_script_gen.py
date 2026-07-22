@@ -35,8 +35,8 @@ narration_script 전체 길이는 반드시 {target_chars}자 내외(공백 포�
 - 대조/반전: "설명드릴게요" 대신 "다들 어렵다는데, 사실 명령어 한 줄이면 끝나요"
 - 즉시 행동 유도: "저장하세요" 대신 "지금 안 보면 다음 주에 또 검색하게 될걸요"
 
-props_prompts는 정확히 2개: 영상 전반부(문제+소개)에 어울리는 소품 세트, 후반부(포인트+CTA)에 어울리는 소품 세트로 나눠줘.
-각 소품 세트는 반드시 3~5개의 단순한 사물/아이콘만 나열해 (예: 키보드, 톱니바퀴, 별, 체크마크, 마법봉, 로봇팔, 반짝이는 스파클, 자물쇠, 방패). 절대 하지 말 것: 글자/텍스트가 들어간 화면·카드·팝업·UI 목업을 그리지 말 것, 사람 캐릭터(우리 캐릭터 포함)를 넣지 말 것. 순수하게 텍스트 없는 단순 아이콘 오브젝트 나열만 허용돼.
+props_prompts는 4개: 영상 흐름(후킹/문제 - 소개 - 포인트 - CTA)에 맞춰 서로 다른 소품 세트 4개로 나눠줘. 매번 이미지를 더 생성해도 괜찮으니 아끼지 말 것 — 세트 수를 줄이지 마.
+각 소품 세트는 반드시 6~8개의 단순한 사물/아이콘을 나열해 (기존보다 더 풍성하게, 예: 키보드, 톱니바퀴, 별, 체크마크, 마법봉, 로봇팔, 반짝이는 스파클, 자물쇠, 방패, 로켓, 트로피, 돋보기, 전구, 클립보드, 터미널 창, 클라우드 아이콘). 절대 하지 말 것: 글자/텍스트가 들어간 화면·카드·팝업·UI 목업을 그리지 말 것, 사람 캐릭터(우리 캐릭터 포함)를 넣지 말 것. 순수하게 텍스트 없는 단순 아이콘 오브젝트 나열만 허용돼.
 
 아래 JSON 형식으로만 응답해 (다른 텍스트 없이, 마크다운 코드블록 없이):
 {{
@@ -45,7 +45,9 @@ props_prompts는 정확히 2개: 영상 전반부(문제+소개)에 어울리는
   "captions": ["자막 구간1", "자막 구간2"],
   "props_prompts": [
     "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_1}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_2}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_2}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_3}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: {{episode_specific_objects_4}}, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
   ]
 }}"""
 
@@ -66,7 +68,7 @@ def generate_script(client: genai.Client, model: str, title: str, settings: dict
     return json.loads(text)
 
 
-def build_cues(duration: float) -> tuple[list[dict], list[dict]]:
+def build_cues(duration: float, n_props_sets: int = 4) -> tuple[list[dict], list[dict]]:
     """Evenly distribute character poses and props sets across the real
     measured narration duration. Timing must come from the real audio, not
     from an LLM's guess about how long its own text will take to speak."""
@@ -77,13 +79,13 @@ def build_cues(duration: float) -> tuple[list[dict], list[dict]]:
         for i in range(n_expr)
     ]
 
-    # Cycle between the 2 generated props sets in short segments (rather than
-    # one static half each) so the top icons visibly change more often —
-    # reuses the same 2 images, no extra Gemini image-generation cost.
-    n_props = max(2, round(duration / PROPS_SEGMENT_SECONDS))
+    # Cycle through the generated props sets (n_props_sets, default 4) in
+    # short segments so the top icons visibly change often, rather than one
+    # static chunk each.
+    n_props = max(n_props_sets, round(duration / PROPS_SEGMENT_SECONDS))
     props_step = duration / n_props
     props_cues = [
-        {"index": i % 2, "start": round(i * props_step, 2), "duration": round(props_step, 2)}
+        {"index": i % n_props_sets, "start": round(i * props_step, 2), "duration": round(props_step, 2)}
         for i in range(n_props)
     ]
     return expression_cues, props_cues
