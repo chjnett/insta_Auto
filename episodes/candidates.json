@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Claude Code: Anthropic의 터미널 네이티브 자율 코딩 에이전트",
+    "hook_angle": "SWE-bench Verified 80.9% 최고 점수 달성 및 GitHub 스타 12만 2천 개(122K+) 기록, 주당 2,200개 이상의 스타 급증",
+    "why_now": "IDE 중심에서 터미널 CLI로 패러다임이 이동하면서, CLAUDE.md 기반의 컨텍스트 유지와 128K 토큰 출력 능력을 바탕으로 대규모 코드베이스 리팩토링의 핵심 도구로 떠오름"
+  },
+  {
+    "title": "Cline & Roo Code: BYOK 방식의 오픈소스 IDE AI 에이전트",
+    "hook_angle": "Cline GitHub 스타 6만 4천 개(64K+) 및 500만 회 이상 다운로드, 커스텀 모드를 앞세운 Roo Code 스타 2만 4천 개(24K+) 돌파",
+    "why_now": "구독형 AI IDE의 대체재로 API 키 직접 입력(BYOK) 방식과 역할별 전용 모드(Architect, Debug, Code)를 통해 개발자 맞춤형 워크플로우를 제공하며 오픈소스 에이전트 시장 형성"
+  },
+  {
+    "title": "OpenHands: 자율형 풀스택 오픈소스 소프트웨어 엔지니어",
+    "hook_angle": "GitHub 스타 7만 9천 개(79K+) 달성 및 2,100명 이상의 오픈소스 기여자 참여",
+    "why_now": "격리된 Docker 샌드박스에서 이슈 자동 감지, 코드 수정, 테스트 실행, Git PR 발행까지 엔드투엔드로 처리하는 자율 에이전트 프레임워크로 급격히 확산 중"
+  },
+  {
+    "title": "Aider: Git 연동 중심의 터미널 AI 페어 프로그래머",
+    "hook_angle": "GitHub 스타 4만 4천 개(44K+) 달성, 누적 410만 회 설치 및 주당 150억(15B) 토큰 소비 기록",
+    "why_now": "AI 작업 결과를 자동 Git 커밋으로 관리하는 안정성과 로컬 LLM 연동 지원으로 터미널 네이티브 개발자들 사이에서 대표적인 AI CLI 도구로 평가받음"
+  }
+]
