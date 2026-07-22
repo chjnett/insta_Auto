@@ -1,0 +1,69 @@
+{
+  "title": "OpenHands (자율형 풀스택 오픈소스 소프트웨어 엔지니어, 깃허브 스타 약 7만 9천 개)",
+  "narration_script": "깃허브 스타 7만 9천 개, 근데 아직도 모르는 사람 많더라고요. 복잡한 코딩과 에러 수정 때문에 피곤하셨죠? 이젠 자율형 오픈소스 AI 엔지니어 OpenHands가 대신 해줍니다. 도커 명령 한 줄이면 실행 완료! 코드 작성, 터미널 명령, 자율 테스트까지 혼자서 척척 해냅니다. 무료 풀스택 AI, 지금 저장하고 바로 시작해보세요!",
+  "captions": [
+    "깃허브 스타 7만 9천 개! 오픈소스 AI 엔지니어",
+    "복잡한 코딩과 에러 수정에 피곤하셨나요?",
+    "자율형 AI OpenHands가 대신 해줍니다",
+    "도커 한 줄로 실행! 코드 작성부터 테스트까지",
+    "지금 저장하고 무료로 시작해보세요!"
+  ],
+  "props_prompts": [
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, gear, star, robot arm, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: checkmark, magic wand, sparkling sparkles, shield, arranged in a small grid, matching the art style of a friendly cartoon presenter character"
+  ],
+  "expression_cues": [
+    {
+      "pose": "surprised",
+      "start": 0.0,
+      "duration": 5.33
+    },
+    {
+      "pose": "questioning",
+      "start": 5.33,
+      "duration": 5.33
+    },
+    {
+      "pose": "pointing",
+      "start": 10.66,
+      "duration": 5.33
+    },
+    {
+      "pose": "nodding",
+      "start": 15.98,
+      "duration": 5.33
+    },
+    {
+      "pose": "celebrating",
+      "start": 21.31,
+      "duration": 5.33
+    }
+  ],
+  "props_cues": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "duration": 5.33
+    },
+    {
+      "index": 1,
+      "start": 5.33,
+      "duration": 5.33
+    },
+    {
+      "index": 0,
+      "start": 10.66,
+      "duration": 5.33
+    },
+    {
+      "index": 1,
+      "start": 15.98,
+      "duration": 5.33
+    },
+    {
+      "index": 0,
+      "start": 21.31,
+      "duration": 5.33
+    }
+  ]
+}

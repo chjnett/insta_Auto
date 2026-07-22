@@ -23,3 +23,7 @@ timestamp,script,call_type,estimated_cost_usd,cumulative_cost_usd
 2026-07-22T22:53:26,03_generate_character,image,0.0390,0.7710
 2026-07-22T23:14:10,05_narration,tts,0.0300,0.8010
 2026-07-22T23:23:40,05_narration,tts,0.0300,0.8310
+2026-07-22T23:34:14,02_script_gen,text,0.0100,0.8410
+2026-07-22T23:35:20,04_generate_props,image,0.0390,0.8800
+2026-07-22T23:35:35,04_generate_props,image,0.0390,0.9190
+2026-07-22T23:36:23,05_narration,tts,0.0300,0.9490
