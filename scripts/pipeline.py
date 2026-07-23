@@ -1,5 +1,4 @@
 import argparse
-import asyncio
 import json
 import subprocess
 import sys
@@ -45,27 +44,25 @@ def run_narrate(episode: str) -> None:
     episode_data = json.loads((ROOT / "episodes" / f"{episode}.json").read_text(encoding="utf-8"))
     settings = json.loads((ROOT / "config" / "settings.json").read_text(encoding="utf-8"))
 
-    audio_path = ROOT / "output" / "narration" / f"{episode}.mp3"
+    audio_path = ROOT / "output" / "narration" / f"{episode}.wav"
     srt_path = ROOT / "output" / "narration" / f"{episode}.srt"
     audio_path.parent.mkdir(parents=True, exist_ok=True)
 
-    asyncio.run(narration.generate_narration_with_captions(
-        episode_data["narration_script"], audio_path, srt_path,
-        settings["tts_voice"], rate=settings["tts_rate"],
-    ))
-
-    duration_result = subprocess.run(
-        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(audio_path)],
-        capture_output=True, text=True, check=True,
+    # Per-sentence Gemini TTS: gives exact per-caption durations, which
+    # build_props_cues_from_segments uses to show each props/icon set for
+    # precisely the time its matching caption is on screen.
+    segments = narration.generate_narration_gemini_per_sentence(
+        episode_data["captions"], audio_path, srt_path,
+        settings["gemini_tts_voice_male"], settings["gemini_model_tts"], settings,
     )
-    duration = float(duration_result.stdout.strip())
-    expression_cues, props_cues = script_gen.build_cues(duration)
-    episode_data["expression_cues"] = expression_cues
-    episode_data["props_cues"] = props_cues
+    total_duration = segments[-1]["start"] + segments[-1]["duration"]
+
+    episode_data["expression_cues"] = script_gen.build_expression_cues(total_duration)
+    episode_data["props_cues"] = script_gen.build_props_cues_from_segments(segments)
     (ROOT / "episodes" / f"{episode}.json").write_text(
         json.dumps(episode_data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    print(f"[ok] narration duration {duration:.2f}s, cues recomputed")
+    print(f"[ok] narration duration {total_duration:.2f}s, {len(segments)} props sets (1 per caption)")
 
 
 def run_compose(episode: str) -> None:

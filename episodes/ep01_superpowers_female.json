@@ -1,71 +1,72 @@
 {
   "title": "Superpowers 플러그인 (Claude Code용 오픈소스 플러그인, 깃허브 스타 약 7만 9천 개)",
-  "narration_script": "깃허브 스타 7만 9천 개, 이거 모르고 Claude 쓰면 절반만 쓰는 거예요. 다짜고짜 코드부터 짜느라 오류 생겨서 답답하셨죠? Superpowers 플러그인이 정답입니다. 기능 기획부터 TDD 테스트 강제, 서브에이전트 코드 리뷰까지 스스로 처리하거든요. /plugin 명령어로 간단히 설치해보세요. 지금 바로 저장하고 써보세요!",
+  "narration_script": "Claude Code로 무작정 코드 짜다 밤새 버그 잡은 적 있으시죠? 이거 모르고 쓰면 Claude를 절반만 쓰는 겁니다. 깃허브 스타 7만 9천 개를 받은 Superpowers 플러그인을 써보세요. 명령어 한 줄 설치로 기획부터 TDD 테스트, 코드 리뷰까지 알아서 처리합니다. 지금 안 보면 다음 개발 때 또 고생하게 될걸요?",
   "captions": [
-    "깃허브 스타 7만 9천 개, 이거 모르고 Claude 쓰면 절반만 쓰는 거예요.",
-    "다짜고짜 코드부터 짜느라 오류 생겨서 답답하셨죠?",
-    "Superpowers 플러그인이 정답입니다.",
-    "기능 기획부터 TDD 테스트 강제, 서브에이전트 코드 리뷰까지 스스로 처리하거든요.",
-    "/plugin 명령어로 간단히 설치해보세요. 지금 바로 저장하고 써보세요!"
+    "Claude Code로 무작정 코드 짜다 밤새 버그 잡은 적 있으시죠?",
+    "이거 모르고 쓰면 Claude를 절반만 쓰는 겁니다.",
+    "깃허브 스타 7만 9천 개를 받은 Superpowers 플러그인을 써보세요.",
+    "명령어 한 줄 설치로 기획부터 TDD 테스트, 코드 리뷰까지 알아서 처리합니다.",
+    "지금 안 보면 다음 개발 때 또 고생하게 될걸요?"
   ],
   "props_prompts": [
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: keyboard, cracked gear, warning triangle, plugin puzzle piece, small bug icon, magnifying glass, coffee cup, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: clipboard with checklist, shield with checkmark, robot arm, terminal window icon, bookmark ribbon, lightbulb, gear, arranged in a small grid, matching the art style of a friendly cartoon presenter character",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: rocket launching, star, computer chip icon, speech bubble icon, cloud upload icon, padlock with checkmark, target with arrow, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
-    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: trophy, thumbs up icon, sparkles, glowing plugin puzzle piece, terminal window icon, checklist icon, bell icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only"
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: a crawling red bug icon, a glowing crescent moon icon, a magnifying glass, a red warning symbol, a crossed-out wrench, a coffee mug, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: a halved orange fruit, a glowing yellow lightbulb, a blue question mark icon, a battery icon at half capacity, a key icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: a bright golden star icon, a glowing lightning bolt icon, a prize ribbon medal, a magic wand icon, a small electric plug icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: a green checkmark icon, a science test tube with green liquid, a notepad with a pencil, a green download arrow icon, a gear wheel icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only",
+    "flat vector cartoon illustration style, clean black outlines, soft flat colors, white background, no shadows: a purple bookmark ribbon icon, a floppy disk save icon, a ringing alarm clock icon, an open eye icon, a pushpin icon, arranged in a small grid, matching the art style of a friendly cartoon presenter character. No text, no letters, no words, no UI screens or app mockups, no human figures or people — icons only"
   ],
   "expression_cues": [
     {
       "pose": "surprised",
       "start": 0.0,
-      "duration": 5.27
+      "duration": 4.91
     },
     {
       "pose": "questioning",
-      "start": 5.27,
-      "duration": 5.27
+      "start": 4.91,
+      "duration": 4.91
     },
     {
       "pose": "pointing",
-      "start": 10.54,
-      "duration": 5.27
+      "start": 9.82,
+      "duration": 4.91
     },
     {
       "pose": "nodding",
-      "start": 15.82,
-      "duration": 5.27
+      "start": 14.74,
+      "duration": 4.91
     },
     {
       "pose": "celebrating",
-      "start": 21.09,
-      "duration": 5.27
+      "start": 19.65,
+      "duration": 4.91
     }
   ],
   "props_cues": [
     {
       "index": 0,
       "start": 0.0,
-      "duration": 5.27
+      "duration": 4.76
     },
     {
       "index": 1,
-      "start": 5.27,
-      "duration": 5.27
+      "start": 4.76,
+      "duration": 4.12
     },
     {
       "index": 2,
-      "start": 10.54,
-      "duration": 5.27
+      "start": 8.88,
+      "duration": 5.08
     },
     {
       "index": 3,
-      "start": 15.82,
-      "duration": 5.27
+      "start": 13.96,
+      "duration": 6.8
     },
     {
-      "index": 0,
-      "start": 21.09,
-      "duration": 5.27
+      "index": 4,
+      "start": 20.76,
+      "duration": 3.8
     }
   ]
 }

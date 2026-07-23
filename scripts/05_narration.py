@@ -92,15 +92,21 @@ def generate_narration_gemini(text: str, captions: list[str], output_audio: Path
 
 
 def generate_narration_gemini_per_sentence(captions: list[str], output_audio: Path, output_srt: Path,
-                                            voice: str, model: str, settings: dict) -> float:
+                                            voice: str, model: str, settings: dict) -> list[dict]:
     """Same Gemini TTS voice, but synthesized one API call per caption/sentence
     instead of one call for the whole script. This trades a few extra cheap
     TTS calls for *exact* text-audio sync: each caption's SRT timing is the
     real measured duration of the clip that speaks it, not a guess (the
     single-call + even-split approach in generate_narration_gemini() drifts
-    out of sync because sentences don't take equal time to speak)."""
+    out of sync because sentences don't take equal time to speak).
+
+    Returns the per-caption segments (start/duration/text) so callers can
+    also align *other* per-caption assets — e.g. props/icon sets — to the
+    exact moment each line is spoken, instead of an independent generic
+    split that drifts out of sync with what's actually being said."""
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     srt_lines = []
+    segments = []
     all_pcm = bytearray()
     cursor = 0.0
 
@@ -110,6 +116,7 @@ def generate_narration_gemini_per_sentence(captions: list[str], output_audio: Pa
         srt_lines.append(
             f"{i + 1}\n{_srt_timestamp(cursor)} --> {_srt_timestamp(cursor + seg_duration)}\n{caption}\n"
         )
+        segments.append({"caption": caption, "start": round(cursor, 2), "duration": round(seg_duration, 2)})
         all_pcm += pcm
         cursor += seg_duration
 
@@ -120,7 +127,7 @@ def generate_narration_gemini_per_sentence(captions: list[str], output_audio: Pa
         wf.writeframes(bytes(all_pcm))
 
     output_srt.write_text("\n".join(srt_lines), encoding="utf-8")
-    return cursor
+    return segments
 
 
 async def compare_voices(voices: list[str]) -> None:

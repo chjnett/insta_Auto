@@ -8,26 +8,31 @@ from importlib import import_module
 script_gen = import_module("02_script_gen")
 
 
-def test_build_cues_props_cycle_through_all_generated_sets():
-    expression_cues, props_cues = script_gen.build_cues(29.0)
-
-    # default is 4 generated props sets — must cycle through all of them,
-    # not just alternate between 2
-    assert len(props_cues) > 4
-    assert [c["index"] for c in props_cues[:6]] == [0, 1, 2, 3, 0, 1]
-
-    # cues must fully cover the real duration with no gaps at the end
-    assert props_cues[-1]["start"] + props_cues[-1]["duration"] == round(29.0, 2)
+def test_build_expression_cues_covers_full_duration():
+    expression_cues = script_gen.build_expression_cues(29.0)
     last_expr = expression_cues[-1]
     assert round(last_expr["start"] + last_expr["duration"], 1) == 29.0
 
 
-def test_build_cues_respects_custom_props_set_count():
-    _, props_cues = script_gen.build_cues(29.0, n_props_sets=2)
-    assert [c["index"] for c in props_cues[:4]] == [0, 1, 0, 1]
-
-
-def test_build_cues_expression_poses_are_valid():
+def test_build_expression_cues_poses_are_valid():
     valid_poses = {"base", "surprised", "nodding", "pointing", "questioning", "celebrating"}
-    expression_cues, _ = script_gen.build_cues(20.0)
+    expression_cues = script_gen.build_expression_cues(20.0)
     assert all(c["pose"] in valid_poses for c in expression_cues)
+
+
+def test_build_props_cues_from_segments_matches_captions_exactly():
+    # each props set must show for exactly the real measured duration of
+    # the caption it depicts — not an independent generic split, which is
+    # how icons ended up mismatched with what was actually being said
+    segments = [
+        {"caption": "첫 문장", "start": 0.0, "duration": 3.2},
+        {"caption": "둘째 문장", "start": 3.2, "duration": 5.1},
+        {"caption": "셋째 문장", "start": 8.3, "duration": 2.7},
+    ]
+    props_cues = script_gen.build_props_cues_from_segments(segments)
+
+    assert len(props_cues) == len(segments)
+    assert [c["index"] for c in props_cues] == [0, 1, 2]
+    for cue, seg in zip(props_cues, segments):
+        assert cue["start"] == seg["start"]
+        assert cue["duration"] == seg["duration"]

@@ -15,6 +15,7 @@
 - [ ] 5. 캡션 템플릿 준비
 - [ ] 6. 대체 텍스트(Alt Text) 습관화
 - [ ] 7. 자동 자막 기능 켜기
+- [ ] 8. 팔로우+댓글 → DM 가이드 발송 자동화 설정
 
 ---
 
@@ -90,6 +91,48 @@
 - 우리 나레이션 대본은 이미 핵심 키워드(제품명, 기능명)를 실제 대사로 말하고 있어 이 부분과 잘 맞음.
 - 단, 우리 파이프라인은 이미 자체 번인 자막을 넣고 있으므로 화면에 자막이 중복 표시되지 않도록 업로드 시 위치/노출 옵션 확인.
 
+## 8. 팔로우+댓글 → DM 가이드 발송 자동화
+
+**"팔로우하고 댓글에 OO 남기면 DM으로 가이드 보내드려요"** 같은 코멘트-트리거 DM 자동화. 2026년 기준 효과 있는 성장 전략으로 확인됨.
+
+### 왜 효과적인가
+- 댓글 트리거 DM 자동화를 쓰는 크리에이터는 "링크는 프로필에" 같은 수동적 CTA 대비 **댓글률이 2~3배 높다**는 조사 결과.
+- DM 전환율 **12~18%** vs 프로필 링크 클릭 전환율 **2~3%** — 압도적 차이.
+- 인스타그램이 공식 확인한 바로는 **"도달 대비 전송 수(sends per reach)"**(릴스를 친구에게 DM으로 보내는 빈도)가 현재 가장 강력한 참여 신호.
+- **선순환 구조**: 댓글 증가 → DM 대화 증가 → 알고리즘에 참여 신호 → 더 넓은 노출 → 더 많은 댓글 (복리처럼 쌓임).
+
+### ⚠️ 주의 — 모든 "참여 유도"가 다 괜찮은 건 아님
+- "동의하면 좋아요 눌러주세요" 같은 **단순 engagement bait는 인스타그램이 페널티를 준다**고 명시적으로 밝힘.
+- 반면 **공식 Meta API 파트너를 통한 댓글→DM 자동화는 가이드라인 준수**로 확인됨 — 즉 정식 API/공인 툴을 거쳐야 안전.
+
+### 구현 방법 (2가지 옵션)
+
+| 옵션 | 설명 | 우리 파이프라인과의 관계 |
+|---|---|---|
+| **A. 서드파티 자동화 툴 사용** (예: ManyChat 등 Meta 공식 파트너) | 키워드 댓글 감지 → 자동 DM 발송을 코드 없이 설정 가능. 가장 빠른 시작 방법 | 파이프라인 밖에서 별도 계정 연동, 개발 불필요 |
+| **B. Meta Instagram Messaging API 직접 연동** | 웹훅으로 댓글 이벤트 수신 → 자체 로직으로 DM 발송 | `docs/meta_api_setup.md`의 Graph API 심사와 별도로 `instagram_manage_messages` 권한 추가 필요 — 장기적으로 `08_meta_publish.py`와 같이 묶어서 구현 고려 |
+
+**지금 당장은 옵션 A(서드파티 툴)로 빠르게 시작**하고, 파이프라인이 API 자동 발행 단계(섹션 4.8, 후순위)까지 가면 옵션 B로 통합하는 것을 권장.
+
+### 캡션 CTA 문구 예시
+```
+💬 댓글에 "가이드"라고 남기면 설치 방법 정리해서 DM으로 보내드려요!
+👤 팔로우하면 다음 팁도 놓치지 않아요
+```
+
+### 캡션 템플릿 업데이트 (섹션 5 반영)
+```
+{후킹 문장 — 핵심 키워드 포함}
+
+{본문 — narration_script 요약 또는 그대로 사용}
+
+💬 댓글에 "가이드"라고 남기면 DM으로 정리해서 보내드려요!
+👤 팔로우하면 다음 팁도 놓치지 않아요
+💾 저장해두고 나중에 다시 보세요
+
+{해시태그 3~5개}
+```
+
 ---
 
 ## 참고: 핵심 성과 지표
@@ -115,3 +158,8 @@
 - [Instagram SEO in 2026: Your Guide to Faster Visibility (Toptal)](https://www.toptal.com/creator/post/instagram-seo)
 - [Instagram SEO: 7 Tips to Grow Your Reach in 2026 (SEO.com)](https://www.seo.com/blog/instagram-seo/)
 - [Instagram Reach in 2026: How to Grow Faster With Reels, Carousels, and Caption SEO](https://www.truefuturemedia.com/articles/instagram-reach-2026-algorithm-reels-carousels-caption-seo)
+- [Instagram Comment to DM Automation Guide (2026)](https://setsmart.io/blog/instagram-comment-to-dm-automation)
+- [Instagram Comment-to-DM Automation: How It Works 2026](https://www.inro.social/blog/instagram-comment-to-dm-automation)
+- [Instagram DM Automation: Safe, Free, and Simpler Than You Think (2026)](https://flowgent.ai/blog/instagram-dm-automation)
+- [Instagram Post and Reel Comments trigger – Manychat Help](https://help.manychat.com/hc/en-us/articles/14281316989724-Instagram-Post-and-Reel-Comments-trigger)
+- [Instagram Reels Strategy: Turn Views Into DMs](https://creatorflow.so/blog/instagram-reels-to-dm-automation-strategy/)
